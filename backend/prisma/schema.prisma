@@ -12,22 +12,10 @@ datasource db {
   provider = "mysql"
 }
 
-// Modelo de Tarefa
 model Task {
   id          Int      @id @default(autoincrement())
   title       String
   description String?
   completed   Boolean  @default(false)
   createdAt   DateTime @default(now())
- 
-  // Relacionamento com Categoria
-  categoryId  Int?
-  category    Category? @relation(fields: [categoryId], references: [id])
-}
-
-// Modelo de Categoria (Flexibilidade de temas)
-model Category {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  tasks Task[]
 }
